@@ -1,4 +1,3 @@
-import Index
 import Testing
 import Tree
 

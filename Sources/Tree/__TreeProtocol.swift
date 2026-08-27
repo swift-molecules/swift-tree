@@ -1,6 +1,5 @@
 public import Storage_Generational
 public import Store_Primitive
-import Tree_Primitive
 
 public protocol Traversable: ~Copyable {
 

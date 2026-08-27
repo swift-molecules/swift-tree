@@ -1,11 +1,8 @@
-public import Buffer_Ring_Primitive
 public import Index
 public import Queue
 public import Stack
 public import Storage_Generational
 public import Store_Primitive
-public import Tree_Index
-public import Tree_Primitive
 
 extension __Tree where S: __TreeStorage & ~Copyable {
 

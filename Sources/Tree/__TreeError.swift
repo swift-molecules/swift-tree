@@ -1,5 +1,3 @@
-public import Tree_Primitive
-
 @frozen
 public enum __TreeError: Swift.Error, Sendable, Equatable {
 
