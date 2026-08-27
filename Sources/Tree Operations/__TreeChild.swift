@@ -1,7 +1,7 @@
-public import Property_Primitives
-public import Storage_Generational_Primitives
+public import Property
+public import Storage_Generational
 public import Store_Primitive
-public import Tree_Index_Primitives
+public import Tree_Index
 
 public enum __TreeChild {}
 
@@ -15,7 +15,7 @@ extension __TreeProtocol where Self: ~Copyable {
     }
 }
 
-extension Property_Primitives.Property.Borrow
+extension Property.Property.Borrow
 where Base: __TreeProtocol & ~Copyable, Tag == __TreeChild {
 
     @inlinable

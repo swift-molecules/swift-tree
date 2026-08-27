@@ -1,11 +1,11 @@
-public import Property_Primitives
-public import Tree_Index_Primitives
+public import Property
+public import Tree_Index
 
 public enum __TreeForEach {}
 
 extension __TreeProtocol where Self: ~Copyable {
 
-    public typealias Property<Tag> = Property_Primitives.Property<Tag, Self>
+    public typealias Property<Tag> = Property.Property<Tag, Self>
 
     @inlinable
     public var forEach: Property<__TreeForEach>.Borrow {
@@ -15,7 +15,7 @@ extension __TreeProtocol where Self: ~Copyable {
     }
 }
 
-extension Property_Primitives.Property.Borrow
+extension Property.Property.Borrow
 where Base: __TreeProtocol & ~Copyable, Tag == __TreeForEach {
 
     @inlinable

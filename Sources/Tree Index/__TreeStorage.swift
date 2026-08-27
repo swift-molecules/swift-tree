@@ -1,5 +1,5 @@
-public import Index_Primitives
-public import Storage_Generational_Primitives
+public import Index
+public import Storage_Generational
 public import Store_Primitive
 
 public protocol __TreeStorage: ~Copyable {
@@ -10,7 +10,7 @@ public protocol __TreeStorage: ~Copyable {
 
     associatedtype Error: Swift.Error = __TreeError
 
-    var _count: Index_Primitives.Index<Element>.Count { get }
+    var _count: Index.Index<Element>.Count { get }
 
     var _rootHandle: Store.Generational.Handle? { get set }
 

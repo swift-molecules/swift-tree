@@ -1,4 +1,4 @@
-public import Index_Primitives
+public import Index
 public import Tree_Primitive
 
 public struct __TreePosition: Sendable, Equatable, Hashable {

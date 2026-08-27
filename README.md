@@ -1,7 +1,7 @@
-# Tree Primitives
+# Tree
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
-[![CI](https://github.com/swift-primitives/swift-tree-primitives/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-primitives/swift-tree-primitives/actions/workflows/ci.yml)
+[![CI](https://github.com/swift-molecules/swift-tree/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-molecules/swift-tree/actions/workflows/ci.yml)
 
 A tree generic over its storage **column** — the carrier writes the node-shape-agnostic surface (insert, remove, subtree teardown, traversal, navigation) once against the column seam, and copyability flows from the column rather than from per-tree machinery. The shipped column is `TreeStorage.Dynamic<Element>`, a dense ordered-children arena; `Tree<Element>` names the canonical dynamic tree built on it.
 
@@ -23,7 +23,7 @@ Positions are generational: `Tree.Position` carries a slot index plus a generati
 ## Quick Start
 
 ```swift
-import Tree_Primitives
+import Tree
 
 var tree = Tree<String>()
 let root = try tree.insert("root", at: .root)
@@ -47,7 +47,7 @@ Add the dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-tree-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-tree.git", branch: "main")
 ]
 ```
 
@@ -57,7 +57,7 @@ Add a product to your target:
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Tree Primitives", package: "swift-tree-primitives")
+        .product(name: "Tree", package: "swift-tree")
     ]
 )
 ```
@@ -70,12 +70,12 @@ The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. R
 
 | Product | When to import |
 |---------|----------------|
-| `Tree Primitives` | Umbrella — the ADT, positions and errors, the dynamic column, and the traversal / navigation views |
+| `Tree` | Umbrella — the ADT, positions and errors, the dynamic column, and the traversal / navigation views |
 | `Tree Primitive` | The bare column-generic carrier value type, zero dependencies — column authors and minimal consumers |
-| `Tree Index Primitives` | `Tree.Position`, `Tree.Error`, insert positions, and the storage / consumer seam protocols — writing code generic over tree-like storage |
-| `Tree Storage Primitives` | The dynamic column (`TreeStorage.Dynamic`) and the canonical `Tree<Element>` front door, without the operations surface |
-| `Tree Operations Primitives` | The shared algorithm engine and the `forEach` / `child` views |
-| `Tree Primitives Test Support` | Test utilities for targets exercising tree code |
+| `Tree Index` | `Tree.Position`, `Tree.Error`, insert positions, and the storage / consumer seam protocols — writing code generic over tree-like storage |
+| `Tree Storage` | The dynamic column (`TreeStorage.Dynamic`) and the canonical `Tree<Element>` front door, without the operations surface |
+| `Tree Operations` | The shared algorithm engine and the `forEach` / `child` views |
+| `Tree Test Support` | Test utilities for targets exercising tree code |
 
 ---
 
@@ -126,18 +126,18 @@ do {
 
 ### Dependencies
 
-- [`swift-index-primitives`](https://github.com/swift-primitives/swift-index-primitives) — the typed index / count vocabulary behind positions and node counts.
-- [`swift-storage-generational-primitives`](https://github.com/swift-primitives/swift-storage-generational-primitives) — the generational handles that make stale positions detectable.
-- [`swift-storage-primitives`](https://github.com/swift-primitives/swift-storage-primitives) — the store vocabulary the arena is expressed in.
-- [`swift-column-primitives`](https://github.com/swift-primitives/swift-column-primitives) — the storage-column vocabulary the arena composes.
-- [`swift-shared-primitives`](https://github.com/swift-primitives/swift-shared-primitives) — the copy-on-write box behind the copyable tree.
-- [`swift-property-primitives`](https://github.com/swift-primitives/swift-property-primitives) — the borrowing accessor mechanism behind the `forEach` / `child` views.
-- [`swift-stack-primitives`](https://github.com/swift-primitives/swift-stack-primitives), [`swift-queue-primitives`](https://github.com/swift-primitives/swift-queue-primitives), [`swift-buffer-ring-primitives`](https://github.com/swift-primitives/swift-buffer-ring-primitives) — the work-list containers driving the iterative traversals.
+- [`swift-index`](https://github.com/swift-molecules/swift-index) — the typed index / count vocabulary behind positions and node counts.
+- [`swift-storage-generational`](https://github.com/swift-molecules/swift-storage-generational) — the generational handles that make stale positions detectable.
+- [`swift-storage`](https://github.com/swift-molecules/swift-storage) — the store vocabulary the arena is expressed in.
+- [`swift-column`](https://github.com/swift-molecules/swift-column) — the storage-column vocabulary the arena composes.
+- [`swift-ownership-shared`](https://github.com/swift-molecules/swift-ownership-shared) — the copy-on-write box behind the copyable tree.
+- [`swift-property`](https://github.com/swift-molecules/swift-property) — the borrowing accessor mechanism behind the `forEach` / `child` views.
+- [`swift-stack`](https://github.com/swift-molecules/swift-stack), [`swift-queue`](https://github.com/swift-molecules/swift-queue), [`swift-buffer-ring`](https://github.com/swift-molecules/swift-buffer-ring) — the work-list containers driving the iterative traversals.
 
 ### Variants
 
-- swift-tree-n-primitives (private, unreleased) — the bounded-arity column over the same seam.
-- swift-tree-keyed-primitives (private, unreleased) — the keyed (children-by-key) column over the same seam.
+- swift-tree-n (private, unreleased) — the bounded-arity column over the same seam.
+- swift-tree-keyed (private, unreleased) — the keyed (children-by-key) column over the same seam.
 
 ---
 

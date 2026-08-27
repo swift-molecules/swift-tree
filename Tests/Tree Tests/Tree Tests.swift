@@ -1,6 +1,6 @@
-import Index_Primitives
+import Index
 import Testing
-import Tree_Primitives
+import Tree
 
 @Suite
 struct `Tree Tests` {

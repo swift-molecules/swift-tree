@@ -1,7 +1,7 @@
-public import Index_Primitives
-public import Storage_Generational_Primitives
+public import Index
+public import Storage_Generational
 public import Store_Primitive
-public import Tree_Index_Primitives
+public import Tree_Index
 public import Tree_Primitive
 
 extension TreeStorage {
@@ -160,7 +160,7 @@ extension __Tree where S: ~Copyable {
     }
 
     @inlinable
-    public init<Element: ~Copyable>(minimumCapacity: Index_Primitives.Index<Element>.Count)
+    public init<Element: ~Copyable>(minimumCapacity: Index.Index<Element>.Count)
     where S == TreeStorage.Dynamic<Element> {
         self.init(storage: TreeStorage.Dynamic<Element>(minimumCapacity: minimumCapacity))
     }
@@ -171,7 +171,7 @@ extension __Tree where S: ~Copyable {
     }
 
     @inlinable
-    public init<Element>(minimumCapacity: Index_Primitives.Index<Element>.Count)
+    public init<Element>(minimumCapacity: Index.Index<Element>.Count)
     where S == TreeStorage.Dynamic<Element> {
         self.init(storage: TreeStorage.Dynamic<Element>(minimumCapacity: minimumCapacity))
     }

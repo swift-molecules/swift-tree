@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-tree-primitives",
+    name: "swift-tree",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -19,65 +19,65 @@ let package = Package(
         ),
 
         .library(
-            name: "Tree Index Primitives",
-            targets: ["Tree Index Primitives"]
+            name: "Tree Index",
+            targets: ["Tree Index"]
         ),
         .library(
-            name: "Tree Storage Primitives",
-            targets: ["Tree Storage Primitives"]
+            name: "Tree Storage",
+            targets: ["Tree Storage"]
         ),
         .library(
-            name: "Tree Operations Primitives",
-            targets: ["Tree Operations Primitives"]
-        ),
-
-        .library(
-            name: "Tree Primitives",
-            targets: ["Tree Primitives"]
+            name: "Tree Operations",
+            targets: ["Tree Operations"]
         ),
 
         .library(
-            name: "Tree Primitives Test Support",
-            targets: ["Tree Primitives Test Support"]
+            name: "Tree",
+            targets: ["Tree"]
+        ),
+
+        .library(
+            name: "Tree Test Support",
+            targets: ["Tree Test Support"]
         ),
     ],
     dependencies: [
 
         .package(
-            url: "https://github.com/swift-primitives/swift-index-primitives.git",
+            url: "https://github.com/swift-molecules/swift-index.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-column-primitives.git",
+            url: "https://github.com/swift-molecules/swift-column.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git",
+            url: "https://github.com/swift-molecules/swift-ownership-shared.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-storage-generational-primitives.git",
+            url: "https://github.com/swift-molecules/swift-storage-generational.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-storage-primitives.git",
+            url: "https://github.com/swift-molecules/swift-storage.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-buffer-ring-primitives.git",
+            url: "https://github.com/swift-molecules/swift-buffer-ring.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-queue-primitives.git",
+            url: "https://github.com/swift-molecules/swift-queue.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-stack-primitives.git",
+            url: "https://github.com/swift-molecules/swift-stack.git",
             branch: "main"
         ),
 
         .package(
-            url: "https://github.com/swift-primitives/swift-property-primitives.git",
+            url: "https://github.com/swift-molecules/swift-property.git",
             branch: "main"
         ),
     ],
@@ -88,82 +88,82 @@ let package = Package(
         ),
 
         .target(
-            name: "Tree Index Primitives",
+            name: "Tree Index",
             dependencies: [
                 "Tree Primitive",
-                .product(name: "Index Primitives", package: "swift-index-primitives"),
+                .product(name: "Index", package: "swift-index"),
                 .product(
-                    name: "Storage Generational Primitives",
-                    package: "swift-storage-generational-primitives"
+                    name: "Storage Generational",
+                    package: "swift-storage-generational"
                 ),
-                .product(name: "Store Primitive", package: "swift-storage-primitives"),
+                .product(name: "Store Primitive", package: "swift-storage"),
             ]
         ),
 
         .target(
-            name: "Tree Storage Primitives",
+            name: "Tree Storage",
             dependencies: [
                 "Tree Primitive",
-                "Tree Index Primitives",
-                .product(name: "Index Primitives", package: "swift-index-primitives"),
-                .product(name: "Column Primitives", package: "swift-column-primitives"),
+                "Tree Index",
+                .product(name: "Index", package: "swift-index"),
+                .product(name: "Column", package: "swift-column"),
                 .product(
                     name: "Ownership Shared Primitive",
-                    package: "swift-ownership-shared-primitives"
+                    package: "swift-ownership-shared"
                 ),
                 .product(
-                    name: "Storage Generational Primitives",
-                    package: "swift-storage-generational-primitives"
+                    name: "Storage Generational",
+                    package: "swift-storage-generational"
                 ),
-                .product(name: "Store Primitive", package: "swift-storage-primitives"),
+                .product(name: "Store Primitive", package: "swift-storage"),
             ]
         ),
 
         .target(
-            name: "Tree Operations Primitives",
+            name: "Tree Operations",
             dependencies: [
                 "Tree Primitive",
-                "Tree Index Primitives",
-                .product(name: "Index Primitives", package: "swift-index-primitives"),
-                .product(name: "Column Primitives", package: "swift-column-primitives"),
-                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring-primitives"),
-                .product(name: "Queue Primitives", package: "swift-queue-primitives"),
-                .product(name: "Stack Primitives", package: "swift-stack-primitives"),
+                "Tree Index",
+                .product(name: "Index", package: "swift-index"),
+                .product(name: "Column", package: "swift-column"),
+                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
+                .product(name: "Queue", package: "swift-queue"),
+                .product(name: "Stack", package: "swift-stack"),
                 .product(
-                    name: "Storage Generational Primitives",
-                    package: "swift-storage-generational-primitives"
+                    name: "Storage Generational",
+                    package: "swift-storage-generational"
                 ),
-                .product(name: "Store Primitive", package: "swift-storage-primitives"),
-                .product(name: "Property Primitives", package: "swift-property-primitives"),
+                .product(name: "Store Primitive", package: "swift-storage"),
+                .product(name: "Property", package: "swift-property"),
             ]
         ),
 
         .target(
-            name: "Tree Primitives",
+            name: "Tree",
             dependencies: [
                 "Tree Primitive",
-                "Tree Index Primitives",
-                "Tree Storage Primitives",
-                "Tree Operations Primitives",
+                "Tree Index",
+                "Tree Storage",
+                "Tree Operations",
             ]
         ),
 
         .target(
-            name: "Tree Primitives Test Support",
+            name: "Tree Test Support",
             dependencies: [
-                "Tree Primitives",
-                .product(name: "Index Primitives Test Support", package: "swift-index-primitives"),
+                "Tree",
+                .product(name: "Index Test Support", package: "swift-index"),
             ],
             path: "Tests/Support"
         ),
 
         .testTarget(
-            name: "Tree Primitives Tests",
+            name: "Tree Tests",
             dependencies: [
-                "Tree Primitives",
-                "Tree Primitives Test Support",
+                "Tree",
+                "Tree Test Support",
 
-                .product(name: "Index Primitives", package: "swift-index-primitives"),
+                .product(name: "Index", package: "swift-index"),
             ]
         ),
     ],

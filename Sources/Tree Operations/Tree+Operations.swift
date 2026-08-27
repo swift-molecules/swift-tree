@@ -1,10 +1,10 @@
 public import Buffer_Ring_Primitive
-public import Index_Primitives
-public import Queue_Primitives
-public import Stack_Primitives
-public import Storage_Generational_Primitives
+public import Index
+public import Queue
+public import Stack
+public import Storage_Generational
 public import Store_Primitive
-public import Tree_Index_Primitives
+public import Tree_Index
 public import Tree_Primitive
 
 extension __Tree where S: __TreeStorage & ~Copyable {
@@ -13,7 +13,7 @@ extension __Tree where S: __TreeStorage & ~Copyable {
 
     public typealias Address = S.Address
 
-    public typealias Count = Index_Primitives.Index<S.Element>.Count
+    public typealias Count = Index.Index<S.Element>.Count
 
     public typealias InsertPosition = __TreeInsertPosition<S.Address>
 
@@ -161,7 +161,7 @@ extension __Tree where S: __TreeStorage & ~Copyable {
     public mutating func clear() { storage._removeAll() }
 
     @inlinable
-    public var height: Index_Primitives.Index<S.Element>.Count? {
+    public var height: Index.Index<S.Element>.Count? {
         guard let rootHandle = storage._rootHandle else { return nil }
         var maxDepth = 0
         var pending = Stack<(handle: Store.Generational.Handle, depth: Int)>()
@@ -170,7 +170,7 @@ extension __Tree where S: __TreeStorage & ~Copyable {
             maxDepth = Swift.max(maxDepth, depth)
             storage._forEachChild(at: handle) { pending.push(($0, depth + 1)) }
         }
-        return Index_Primitives.Index<S.Element>.Count(UInt(maxDepth))
+        return Index.Index<S.Element>.Count(UInt(maxDepth))
     }
 
     @inlinable

@@ -1,9 +1,9 @@
-public import Column_Primitives
-public import Index_Primitives
+public import Column
+public import Index
 public import Ownership_Shared_Primitive
-public import Storage_Generational_Primitives
+public import Storage_Generational
 public import Store_Primitive
-public import Tree_Index_Primitives
+public import Tree_Index
 
 @usableFromInline
 struct __TreeArena<Element: ~Copyable, ChildLinks>: ~Copyable {
