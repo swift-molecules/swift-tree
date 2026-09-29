@@ -10,7 +10,7 @@ public protocol __TreeStorage: ~Copyable {
 
     associatedtype Error: Swift.Error = __TreeError
 
-    var _count: Index.Index<Element>.Count { get }
+    var _count: Index::Index<Element>.Count { get }
 
     var _rootHandle: Store.Generational.Handle? { get set }
 
