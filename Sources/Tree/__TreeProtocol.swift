@@ -1,5 +1,5 @@
-public import Storage_Generational
-public import Store_Primitive
+public import Storage
+public import Store
 
 public protocol Traversable: ~Copyable {
 

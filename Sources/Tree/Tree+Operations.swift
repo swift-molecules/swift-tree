@@ -1,8 +1,8 @@
 public import Index
 public import Queue
 public import Stack
-public import Storage_Generational
-public import Store_Primitive
+public import Storage
+public import Store
 
 extension __Tree where S: __TreeStorage & ~Copyable {
 

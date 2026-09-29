@@ -25,19 +25,19 @@ let package = Package(
             targets: ["Tree Apple Foundation Integration"]
         ),
     ],
+    traits: [
+        .trait(name: "Property", description: "Tree traversal and child property accessors."),
+    ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-property.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-store.git", branch: "main"),
         .package(
             url: "https://github.com/swift-atoms/swift-index.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-storage-generational.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-atoms/swift-storage.git",
-            branch: "main"
-        ),
+            branch: "main", traits: ["Generational"]),
         .package(
             url: "https://github.com/swift-atoms/swift-queue.git",
             branch: "main"
@@ -52,13 +52,11 @@ let package = Package(
             name: "Tree",
             dependencies: [
                 .product(name: "Index", package: "swift-index"),
-                .product(
-                    name: "Storage Generational",
-                    package: "swift-storage-generational"
-                ),
-                .product(name: "Store Primitive", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
+                .product(name: "Property", package: "swift-property", condition: .when(traits: ["Property"])),
                 .product(name: "Queue", package: "swift-queue"),
                 .product(name: "Stack", package: "swift-stack"),
+                .product(name: "Storage", package: "swift-storage"),
             ]
         ),
         .target(

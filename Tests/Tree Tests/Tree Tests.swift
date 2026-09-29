@@ -1,3 +1,4 @@
+#if Property
 import Testing
 import Tree
 
@@ -214,3 +215,4 @@ extension `Tree Tests`.Unit {
         let _: Tree<MoveOnly>.Error? = nil
     }
 }
+#endif
