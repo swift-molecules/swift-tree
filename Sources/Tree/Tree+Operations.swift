@@ -1,4 +1,7 @@
+public import Buffer_Ring_Primitive
 public import Index
+public import Memory_Allocator_Protocol
+public import Memory_Small
 public import Queue
 public import Stack
 public import Storage

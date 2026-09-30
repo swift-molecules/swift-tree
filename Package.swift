@@ -46,6 +46,8 @@ let package = Package(
             url: "https://github.com/swift-molecules/swift-stack.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-molecules/swift-memory-allocation.git", branch: "main", traits: ["MemorySmall"]),
+        .package(url: "https://github.com/swift-molecules/swift-buffer-ring.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -57,6 +59,9 @@ let package = Package(
                 .product(name: "Queue", package: "swift-queue"),
                 .product(name: "Stack", package: "swift-stack"),
                 .product(name: "Storage", package: "swift-storage"),
+                .product(name: "Memory Small", package: "swift-memory-allocation"),
+                .product(name: "Memory Allocator Protocol", package: "swift-memory-allocation"),
+                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
             ]
         ),
         .target(
