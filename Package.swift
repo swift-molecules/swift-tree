@@ -37,7 +37,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/swift-atoms/swift-storage.git",
-            branch: "main", traits: ["Generational"]),
+            branch: "main", traits: ["Generational", "Memory"]),
         .package(
             url: "https://github.com/swift-atoms/swift-queue.git",
             branch: "main"
@@ -48,6 +48,11 @@ let package = Package(
         ),
         .package(url: "https://github.com/swift-molecules/swift-memory-allocation.git", branch: "main", traits: ["MemorySmall"]),
         .package(url: "https://github.com/swift-molecules/swift-buffer-ring.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-buffer.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-buffer-linear.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-memory.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-ownership-shared.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-tagged.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -77,7 +82,22 @@ let package = Package(
         ),
         .testTarget(
             name: "Tree Tests",
-            dependencies: ["Tree"]
+            dependencies: [
+                "Tree",
+                .product(name: "Index", package: "swift-index"),
+                .product(name: "Store", package: "swift-store"),
+                .product(name: "Storage", package: "swift-storage"),
+                .product(name: "Buffer", package: "swift-buffer"),
+                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer Linear Bounded Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
+                .product(name: "Memory Allocator Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Allocator", package: "swift-memory-allocation"),
+                .product(name: "Memory", package: "swift-memory"),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
+                .product(name: "Tagged", package: "swift-tagged"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]
