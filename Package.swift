@@ -71,19 +71,19 @@ let package = Package(
         ),
         .target(
             name: "Tree Standard Library Integration",
-            dependencies: ["Tree"]
+            dependencies: [.target(name: "Tree")]
         ),
         .target(
             name: "Tree Apple Foundation Integration",
             dependencies: [
-                "Tree",
-                "Tree Standard Library Integration",
+                .target(name: "Tree"),
+                .target(name: "Tree Standard Library Integration"),
             ]
         ),
         .testTarget(
             name: "Tree Tests",
             dependencies: [
-                "Tree",
+                .target(name: "Tree"),
                 .product(name: "Index", package: "swift-index"),
                 .product(name: "Store", package: "swift-store"),
                 .product(name: "Storage", package: "swift-storage"),
@@ -104,19 +104,14 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+    target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableExperimentalFeature("Lifetimes"),
+        .treatAllWarnings(as: .error),
     ]
-
-    let package: [SwiftSetting] = [
-        .enableExperimentalFeature("RawLayout")
-    ]
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

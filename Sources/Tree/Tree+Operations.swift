@@ -167,7 +167,7 @@ extension __Tree where S: __TreeStorage & ~Copyable {
         var pending = Stack<(handle: Store.Generational.Handle, depth: Int)>()
         pending.push((rootHandle, 0))
         while let (handle, depth) = pending.pop() {
-            maxDepth = Swift.max(maxDepth, depth)
+            maxDepth = Swift::max(maxDepth, depth)
             storage._forEachChild(at: handle) { pending.push(($0, depth + 1)) }
         }
         return Index::Index<S.Element>.Count(UInt(maxDepth))

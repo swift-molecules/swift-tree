@@ -1,5 +1,5 @@
 @frozen
-public enum __TreeError: Swift.Error, Sendable, Equatable {
+public enum __TreeError: Swift::Error, Sendable, Equatable {
 
     case invalidPosition
 

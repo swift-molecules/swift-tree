@@ -1,5 +1,5 @@
 public import Index
-public import Storage
+internal import Storage
 public import Store
 
 public protocol __TreeStorage: ~Copyable {
@@ -8,7 +8,7 @@ public protocol __TreeStorage: ~Copyable {
 
     associatedtype Address
 
-    associatedtype Error: Swift.Error = __TreeError
+    associatedtype Error: Swift::Error = __TreeError
 
     var _count: Index::Index<Element>.Count { get }
 

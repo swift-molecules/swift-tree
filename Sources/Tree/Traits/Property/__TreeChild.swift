@@ -1,6 +1,6 @@
 #if Property
 public import Property
-public import Storage
+internal import Storage
 public import Store
 
 public enum __TreeChild {}

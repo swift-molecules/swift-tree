@@ -43,16 +43,19 @@ struct PositionalTreeArena<Element: ~Copyable, ChildLinks>: ~Copyable {
         self.rootHandle = nil
     }
     init(minimumCapacity: Index<Element>.Count) {
-        let slots = Index<Slot>.Count(UInt(Swift.max(Int(bitPattern: minimumCapacity), 1)))
+        let slots = Index<Slot>.Count(UInt(Swift::max(Int(bitPattern: minimumCapacity), 1)))
         self._column = Ownership.Shared(Storage<Memory.Allocator<Memory.Heap>.Pool>.Generational<Slot>.create(slotCapacity: slots))
         self.rootHandle = nil
     }
     init(minimumCapacity: Index<Element>.Count)
     where Element: Copyable, ChildLinks: Copyable {
-        let slots = Index<Slot>.Count(UInt(Swift.max(Int(bitPattern: minimumCapacity), 1)))
+        let slots = Index<Slot>.Count(UInt(Swift::max(Int(bitPattern: minimumCapacity), 1)))
         self._column = Ownership.Shared(Storage<Memory.Allocator<Memory.Heap>.Pool>.Generational<Slot>.create(slotCapacity: slots))
         self.rootHandle = nil
     }
+}
+
+extension PositionalTreeArena where Element: ~Copyable {
     var count: Index<Element>.Count {
         Index<Element>.Count(UInt(Int(bitPattern: _column.withColumn { $0.count })))
     }

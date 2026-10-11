@@ -1,3 +1,3 @@
-public import Tree
-public import Tree_Standard_Library_Integration
-public import Foundation
+internal import Tree
+internal import Tree_Standard_Library_Integration
+internal import Foundation

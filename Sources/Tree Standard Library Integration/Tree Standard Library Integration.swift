@@ -1,1 +1,1 @@
-public import Tree
+internal import Tree
