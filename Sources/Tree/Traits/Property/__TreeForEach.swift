@@ -1,36 +1,36 @@
 #if Property
-public import Property
+    public import Property
 
-public enum __TreeForEach {}
+    public enum __TreeForEach {}
 
-extension __TreeProtocol where Self: ~Copyable {
+    extension __TreeProtocol where Self: ~Copyable {
 
-    public typealias Property<Tag> = Property::Property<Tag, Self>
+        public typealias Property<Tag> = Property::Property<Tag, Self>
 
-    @inlinable
-    public var forEach: Property<__TreeForEach>.Borrow {
-        _read {
-            yield Property<__TreeForEach>.Borrow(self)
+        @inlinable
+        public var forEach: Property<__TreeForEach>.Borrow {
+            _read {
+                yield Property<__TreeForEach>.Borrow(self)
+            }
         }
     }
-}
 
-extension Property::Property.Borrow
-where Base: __TreeProtocol & ~Copyable, Tag == __TreeForEach {
+    extension Property::Property.Borrow
+    where Base: __TreeProtocol & ~Copyable, Tag == __TreeForEach {
 
-    @inlinable
-    public func preOrder(_ body: (borrowing Base.Element) -> Void) {
-        base.value._forEachPreOrder(body)
+        @inlinable
+        public func preOrder(_ body: (borrowing Base.Element) -> Void) {
+            base.value._forEachPreOrder(body)
+        }
+
+        @inlinable
+        public func postOrder(_ body: (borrowing Base.Element) -> Void) {
+            base.value._forEachPostOrder(body)
+        }
+
+        @inlinable
+        public func levelOrder(_ body: (borrowing Base.Element) -> Void) {
+            base.value._forEachLevelOrder(body)
+        }
     }
-
-    @inlinable
-    public func postOrder(_ body: (borrowing Base.Element) -> Void) {
-        base.value._forEachPostOrder(body)
-    }
-
-    @inlinable
-    public func levelOrder(_ body: (borrowing Base.Element) -> Void) {
-        base.value._forEachLevelOrder(body)
-    }
-}
 #endif
