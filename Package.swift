@@ -98,7 +98,7 @@ let package = Package(
                 .product(name: "Memory Allocator", package: "swift-memory-allocation"),
                 .product(name: "Memory", package: "swift-memory"),
                 .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
-                .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Property"])),
+                .product(name: "Tagged", package: "swift-tagged"),
             ]
         ),
     ],
