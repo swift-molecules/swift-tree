@@ -25,7 +25,7 @@ extension __Tree where S: __TreeStorage & ~Copyable {
 
     @inlinable
     public func _position(of handle: Store.Generational.Handle) -> __TreePosition {
-        __TreePosition(index: handle.index, token: UInt32(truncatingIfNeeded: handle.generation))
+        __TreePosition(index: handle.index, token: handle.generation)
     }
 
     @inlinable

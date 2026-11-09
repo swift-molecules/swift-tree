@@ -8,7 +8,7 @@ import Storage
 import Store
 import Tree
 
-private struct PositionalTreeNode<Element: ~Copyable, ChildLinks>: ~Copyable {
+struct PositionalTreeNode<Element: ~Copyable, ChildLinks>: ~Copyable {
 
     var element: Element
 
@@ -30,7 +30,7 @@ extension PositionalTreeNode: Copyable where Element: Copyable, ChildLinks: Copy
 
 extension PositionalTreeNode: Sendable where Element: Sendable, ChildLinks: Sendable {}
 
-private struct PositionalTreeArena<Element: ~Copyable, ChildLinks>: ~Copyable {
+struct PositionalTreeArena<Element: ~Copyable, ChildLinks>: ~Copyable {
     typealias Slot = PositionalTreeNode<Element, ChildLinks>
     var _column: Ownership.Shared<Slot, Storage<Memory.Allocator<Memory.Heap>.Pool>.Generational<Slot>>
     var rootHandle: Store::Store.Generational.Handle?
@@ -64,7 +64,7 @@ extension PositionalTreeArena where Element: ~Copyable {
         guard
             slot >= 0,
             let handle = _column.withColumn({ $0.handle(at: Index<Slot>(Ordinal(UInt(slot)))) }),
-            UInt32(truncatingIfNeeded: handle.generation) == position.token
+            handle.generation == position.token
         else { return nil }
         return handle
     }
@@ -127,7 +127,7 @@ extension PositionalTreeArena: Copyable where Element: Copyable, ChildLinks: Cop
 
 extension PositionalTreeArena: Sendable where Element: Sendable, ChildLinks: Sendable {}
 
-private struct PositionalTreeStorage<Element: ~Copyable>: ~Copyable {
+struct PositionalTreeStorage<Element: ~Copyable>: ~Copyable {
     var _arena: PositionalTreeArena<Element, [Store::Store.Generational.Handle]>
     init() { _arena = PositionalTreeArena<Element, [Store::Store.Generational.Handle]>() }
     init(minimumCapacity: Index<Element>.Count) {
