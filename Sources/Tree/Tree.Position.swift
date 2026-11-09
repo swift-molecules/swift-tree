@@ -7,7 +7,7 @@ public struct __TreePosition: Sendable, Equatable, Hashable {
     public let token: Int
 
     @inlinable
-    public init(index: Index<Self>, token: Int) {
+    internal init(index: Index<Self>, token: Int) {
         self.index = index
         self.token = token
     }
@@ -18,7 +18,7 @@ public struct __TreePosition: Sendable, Equatable, Hashable {
     }
 
     @inlinable
-    public init(index: Int, token: Int) {
+    internal init(index: Int, token: Int) {
         self.init(
             index: Index<Self>(Ordinal(UInt(index))),
             token: token
